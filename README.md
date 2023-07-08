@@ -46,7 +46,7 @@ In order for osTicket to function as a server, we first must enable IIS on our W
 <p>
 This link will provide all of the installation files needed to properly install osTicket: https://drive.google.com/drive/u/0/folders/1APMfNyfNzcxZC6EzdaNfdZsUwxWYChf6. </p>
 <p>
-<h3>Install PHP, Rewrite Module, VC Executable & MySQL</h3>
+<h3>Download and Install PHP, Rewrite Module, VC Executable & MySQL</h3>
 - First, install PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi) and the Rewrite Module (rewrite_amd64_en-US.msi). 
 
   - Create the directory C:\PHP on File Explorer
