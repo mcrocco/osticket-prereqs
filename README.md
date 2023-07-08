@@ -21,41 +21,49 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 <h2>List of Prerequisites</h2>
 
 - Installing IIS (Internet Information Services) and PHP Manager for IIS
-- Download and Install Rewrite Module
-- Download PHP
-- Download VC executable
-- Download MySQL and HeidiSQL
+- Download and Install PHP, Rewrite Module, VC Executable & MySQL
+- Register PHP within IIS
+- Install osTicket & Enable PHP Extensions
+- Install HeidiSQL
+- Finish osTicket Setup
 
 <h2>Installation Steps</h2>
+
+<h3>Installing IIS (Internet Information Services) and PHP Manager for IIS</h3>
 
 <p>
 <img src="https://i.imgur.com/UnxODtv.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-In order for osTicket to function as a server, we first must enable IIS on our Windows machine. In the search bar next to the start button, search "add or remove programs" open the system settings, select Programs and Features on the top right, and then select "Turn Windows features on or off". Scrolling down to Internet Information Services, check that box, along with World Wide Web Services once it is expanded. In addition, make sure CGI is marked under Application Development Features. The picture above is what the Windows Features screen should look like after enabling everything. Click "OK" to install IIS. 
+In order for osTicket to function as a server, we first must enable IIS on our Windows machine. In the search bar next to the start button, search "add or remove programs" open the system settings, select "Programs and Features" on the top right, and then select "Turn Windows features on or off". Scrolling down to Internet Information Services, check that box, along with World Wide Web Services once it is expanded. In addition, make sure CGI is marked under Application Development Features. The picture above is what the Windows Features screen should look like after enabling everything. Click "OK" to install IIS. 
 </p>
 <br />
 
 <p>
 <img src="https://i.imgur.com/MVCKbJ2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
+<p>The picture above represents all of the files in the google drive link.</p>
 <p>
-This link will provide all of the installation files needed to properly install osTicket: https://drive.google.com/drive/u/0/folders/1APMfNyfNzcxZC6EzdaNfdZsUwxWYChf6. The picture above represents all of the files in the google drive link.
+This link will provide all of the installation files needed to properly install osTicket: https://drive.google.com/drive/u/0/folders/1APMfNyfNzcxZC6EzdaNfdZsUwxWYChf6. </p>
+<p>
+<h3>Install PHP, Rewrite Module, VC Executable & MySQL</h3>
+- First, install PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi) and the Rewrite Module (rewrite_amd64_en-US.msi). 
 
-First, install PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi) and the Rewrite Module (rewrite_amd64_en-US.msi). 
+  - Create the directory C:\PHP on File Explorer
 
-Create the directory C:\PHP on File Explorer
-
-Go back to the installation files and download PHP 7.3.8 (php-7.3.8-nts-Win32-VC15-x86.zip) and unzip the file into the directory C:\PHP
-
-Download and install VC_redist.x86.exe
-
-Download and install MySQL 5.5.62 (mysql-5.5.62-win32.msi)
+  - Go back to the installation files and download PHP 7.3.8 (php-7.3.8-nts-Win32-VC15-x86.zip) and unzip the file into the directory C:\PHP
+</p>
+<p>
+- Download and install VC_redist.x86.exe
+</p>
+<p>
+- Download and install MySQL 5.5.62 (mysql-5.5.62-win32.msi)
+  
   - Choose typical setup when installing MySQL
   - Choose Standard Configuration when MySQL launches and enter a password to remember
 </p>
 <br />
-
+<h3>Register PHP within IIS</h3>
 <p>
 <img src="https://i.imgur.com/nk2maGo.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
@@ -64,24 +72,26 @@ After installing all of those files, we have to now register PHP from within IIS
 </p>
 <br />
 
+<h3>Install osTicket & Enable PHP Extensions</h3>
 <p>
 <img src="https://i.imgur.com/a1eHMzM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-After registering PHP, go back to the installation files and download osTicket v1.15.8. Once the zip file is extracted, copy the "upload folder" to c:\inetpub\wwwroot
+After registering PHP, go back to the installation files and download osTicket v1.15.8. Once the zip file is extracted, copy the "upload" folder to c:\inetpub\wwwroot
   - Within wwwroot, rename "upload" to "osTicket" and restart IIS again
 In IIS, go to Sites, Default and then osTicket
-  - On the right-hand side click Browse *:80 to take you to the webpage that osTicket is running on. 
+  - On the right-hand side, click Browse *:80 to take you to the webpage that osTicket is running on. 
 
 At this point the picture above is what should be showing on the web page, minus a couple of check marks. To enable more extensions, go to IIS, Sites, Default and then osTicket. Select PHP Manager and individually select php_imap.dll, php_intl.dll & php_opcache.dll and then select enable in the top right for each. Refreshing the osTicket webpage will show more checkmarks like what is shown above. 
 </p>
 <br />
 
+<h3>Install HeidiSQL</h3>
 <p>
 <img src="https://i.imgur.com/j72YKDH.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Before installing HeidiSQL, ost-sampleconfig.php needs to be renamed to ost-config.php. This can be found in the C:\inetpub\wwwroot\osTicket\include directory. Additionally, ost-config.php needs to have a permission of everyone having access to the file. So, right-click the file, select Properties, Security and then Advanced. Choose Disable Inheritance and Remove All to get rid of all of the default permissions, and then go to New Permissions, type in "everyone", check names, and give this all of the access privileges. 
+Before installing HeidiSQL, "ost-sampleconfig.php" needs to be renamed to "ost-config.php". This can be found in the "C:\inetpub\wwwroot\osTicket\include" directory. Additionally, "ost-config.php" needs to have a permission of everyone having access to the file. So, right-click the file, select Properties, Security and then Advanced. Choose Disable Inheritance and Remove All to get rid of all of the default permissions, and then go to New Permissions, type in "everyone", Check Names, and give this all of the access privileges. 
 
 Now we can go back to the installation files and install HeidiSQL
   - After opening HeidiSQL, create a new session and create a password to remember
@@ -91,6 +101,7 @@ Now we can go back to the installation files and install HeidiSQL
 </p>
 <br />
 
+<h3>Finish osTicket Setup</h3>
 <p>
 <img src="https://i.imgur.com/IaVFGuB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
